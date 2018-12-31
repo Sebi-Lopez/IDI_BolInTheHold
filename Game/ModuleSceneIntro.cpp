@@ -174,6 +174,8 @@ bool ModuleSceneIntro::Start()
 		zones[i].timer.Stop(); 
 	}
 
+	bool Did_i_win = false;
+	time_with_ball.Stop();
 	return ret;
 }
 
@@ -239,12 +241,24 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 		touched_the_sky = true;
 		time.Stop();
 		Uint32 helper = time.Read();
+		Did_i_win = true;
 		if (helper <= finished_time) {
 			finished_time = helper;
 		}
 		time.Start();
 
 	}
+
+	if (body1 == (PhysBody3D*)App->player->Ball && body2 == (PhysBody3D*)App->player->vehicle) {
+		if (first_time) {
+			time_with_ball.Start();
+		}
+		else {
+			time_with_ball.Resume();
+		}
+		
+	}
+	time_with_ball.Stop();
 }
 
 PhysBody3D* ModuleSceneIntro::CreateFinishLane(vec3 size, vec3 pos) {
@@ -259,6 +273,63 @@ PhysBody3D* ModuleSceneIntro::CreateFinishLane(vec3 size, vec3 pos) {
 	return flane;
 }
 
+bool ModuleSceneIntro::Save(pugi::xml_node & node)
+{
+	bool ret = true;
+
+	pugi::xml_node timer = node.append_child("timers");
+
+
+	timer.append_attribute("Sec_in_zone_0:") = zones[0].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_1:") = zones[1].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_2:") = zones[2].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_3:") = zones[3].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_4:") = zones[4].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_5:") = zones[5].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_6:") = zones[6].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_7:") = zones[7].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_8:") = zones[8].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_9:") = zones[9].timer.ReadSec();
+
+	timer.append_attribute("Sec_in_zone_10:") = zones[10].timer.ReadSec();
+
+
+	timer.append_attribute("Secs_in_contact_with_ball:") = time_with_ball.ReadSec();
+
+
+	float time_without = time.ReadSec() - time_with_ball.ReadSec();
+
+
+	timer.append_attribute("Time_to_complete_the_run:") = finished_time/1000.f;
+
+
+	timer.append_attribute("Secs_without_touching_the_ball:") = time_without;
+
+
+	pugi::xml_node variables = node.append_child("variables");
+
+
+	variables.append_attribute("Win:") = Did_i_win;
+
+
+
+
+
+
+
+
+	return ret;
+}
+
 void ModuleSceneIntro::CheckZones()
 {
 	int x, y;
@@ -271,6 +342,7 @@ void ModuleSceneIntro::CheckZones()
 		if (x > check.init.x && y > check.init.y && x < check.end.x && y < check.end.y)
 		{
 			zones[i].timer.Resume();
+			
 			LOG("Zone No. %i: %.2f", i, zones[i].timer.ReadSec());
 		}
 		else zones[i].timer.Stop();

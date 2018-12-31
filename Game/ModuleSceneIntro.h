@@ -6,7 +6,7 @@
 #include "Timer.h"
 
 #define MAX_SNAKE 2
-#define NUM_ZONES 15
+#define NUM_ZONES 11
 
 struct Zone {
 	vec2 init = { 0,0 };
@@ -43,7 +43,7 @@ public:
 	void CreateFan(float x, float y, float z, Color color = Black);
 	void UpdateFans();
 	PhysBody3D* CreateFinishLane(vec3 size, vec3 position);
-
+	bool Save(pugi::xml_node&);
 	void CheckZones();
 
 
@@ -56,10 +56,14 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+
+	bool first_time;
+	Timer time_with_ball;
 	Timer time;
 	Uint32 finished_time = 0;
 	PhysBody3D* FinishLane;
 	bool touched_the_sky = false;
+	bool Did_i_win = false;
 	
 
 	PhysBody3D* pb_chassis;

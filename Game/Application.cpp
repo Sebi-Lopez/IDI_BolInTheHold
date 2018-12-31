@@ -136,7 +136,7 @@ void Application::AddModule(Module* mod)
 }
 
 
-void Application::SaveGame(const char* file) const
+void Application::SaveGame(const char* file)
 {
 	save_game.create(file);
 

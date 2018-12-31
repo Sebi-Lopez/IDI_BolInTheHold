@@ -42,7 +42,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
-	void SaveGame(const char* file) const;
+	void SaveGame(const char* file);
 
 private:
 
