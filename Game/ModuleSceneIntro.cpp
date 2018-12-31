@@ -139,8 +139,35 @@ bool ModuleSceneIntro::Start()
 	zones[0].init = { -100 , -175 };
 	zones[0].end = { 175, 3 };
 
-	zones[1].init = { -100, 3 };
-	zones[1].end = { 175, 200 };
+	zones[1].init = { -60,6 };
+	zones[1].end = { 90, 100 };
+
+	zones[2].init = { -85,50 };
+	zones[2].end = { -25,180 };
+
+	zones[3].init = { -170,3 };
+	zones[3].end = { -60,180 };
+
+	zones[4].init = { 100,3 };
+	zones[4].end = { 130,180 };
+
+	zones[5].init = { 60,100 };
+	zones[5].end = { 100,180 };
+
+	zones[6].init = { -25, 100 };
+	zones[6].end = { 70,330 };
+
+	zones[7].init = { 70,180 };
+	zones[7].end = { 130,500 };
+
+	zones[8].init = { -25, 330 };
+	zones[8].end = { 60, 380 };
+
+	zones[9].init = { -170,180 };
+	zones[9].end = { -25,500 };
+
+	zones[10].init = { -25, 380 };
+	zones[10].end = { 40, 500 };
 
 	for (int i = 0; i < NUM_ZONES; ++i)
 	{
@@ -170,7 +197,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		if (zones[i].timer.isRunning())
 		{
-			LOG("Zone No. %i: %.2f", i, zones[i].timer.ReadSec());
+			
 		}
 	}
 
@@ -244,6 +271,7 @@ void ModuleSceneIntro::CheckZones()
 		if (x > check.init.x && y > check.init.y && x < check.end.x && y < check.end.y)
 		{
 			zones[i].timer.Resume();
+			LOG("Zone No. %i: %.2f", i, zones[i].timer.ReadSec());
 		}
 		else zones[i].timer.Stop();
 	}
