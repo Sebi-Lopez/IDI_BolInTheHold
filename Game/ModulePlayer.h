@@ -29,6 +29,7 @@ public:
 	void CheckTime(); 
 	void CreateVehicle();
 	vec3 GetPos();
+	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 public:
 

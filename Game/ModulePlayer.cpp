@@ -70,6 +70,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Render();
 	s.Render();
 
+
 	return UPDATE_CONTINUE;
 }
 
@@ -163,6 +164,21 @@ void ModulePlayer::CheckTime()
 	}
 }
 
+void ModulePlayer::OnCollision(PhysBody3D* body1, PhysBody3D* body2) {
+
+
+
+	if (body2 == Ball && body1 == vehicle) {
+		App->scene_intro->time_with_ball.Resume();
+
+	}
+	else {
+		App->scene_intro->time_with_ball.Stop();
+	}
+	
+
+}
+
 void ModulePlayer::CreateVehicle()
 {
 
@@ -249,6 +265,7 @@ void ModulePlayer::CreateVehicle()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
+	vehicle->collision_listeners.add(this);
 }
 
 vec3 ModulePlayer::GetPos()

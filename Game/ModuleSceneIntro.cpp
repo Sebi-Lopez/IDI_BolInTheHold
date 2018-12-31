@@ -249,16 +249,7 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 	}
 
-	if (body1 == (PhysBody3D*)App->player->Ball && body2 == (PhysBody3D*)App->player->vehicle) {
-		if (first_time) {
-			time_with_ball.Start();
-		}
-		else {
-			time_with_ball.Resume();
-		}
-		
-	}
-	time_with_ball.Stop();
+	
 }
 
 PhysBody3D* ModuleSceneIntro::CreateFinishLane(vec3 size, vec3 pos) {

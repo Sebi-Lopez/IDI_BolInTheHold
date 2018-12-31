@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <game_state>
 	<Scene>
-		<timers Sec_in_zone_0:="11.0950003" Sec_in_zone_1:="0.340000004" Sec_in_zone_2:="0.340000004" Sec_in_zone_3:="0.340000004" Sec_in_zone_4:="0.340000004" Sec_in_zone_5:="0.340000004" Sec_in_zone_6:="0.340000004" Sec_in_zone_7:="0.340000004" Sec_in_zone_8:="0.340000004" Sec_in_zone_9:="0.340000004" Sec_in_zone_10:="0.340000004" Secs_in_contact_with_ball:="0.340000004" Time_to_complete_the_run:="0" Secs_without_touching_the_ball:="10.4159994" />
+		<timers Sec_in_zone_0:="7.73400021" Sec_in_zone_1:="0.331" Sec_in_zone_2:="0.331" Sec_in_zone_3:="0.331" Sec_in_zone_4:="0.331" Sec_in_zone_5:="0.331" Sec_in_zone_6:="0.331" Sec_in_zone_7:="0.331" Sec_in_zone_8:="0.331" Sec_in_zone_9:="0.331" Sec_in_zone_10:="0.331" Secs_in_contact_with_ball:="2.75999999" Time_to_complete_the_run:="0" Secs_without_touching_the_ball:="4.64500046" />
 		<variables Win:="false" />
 	</Scene>
 	<Player />
