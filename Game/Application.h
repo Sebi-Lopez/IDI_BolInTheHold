@@ -12,7 +12,7 @@
 #include "ModuleCamera3D.h"
 #include "ModulePhysics3D.h"
 #include "ModulePlayer.h"
-
+#include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 
 class Application
@@ -30,6 +30,7 @@ public:
 private:
 
 	Timer	ms_timer;
+	mutable p2SString	save_game;
 	float	dt;
 	p2List<Module*> list_modules;
 
@@ -41,6 +42,7 @@ public:
 	bool Init();
 	update_status Update();
 	bool CleanUp();
+	void SaveGame(const char* file) const;
 
 private:
 

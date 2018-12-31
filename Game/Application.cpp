@@ -1,4 +1,6 @@
 #include "Application.h"
+#include <iostream> 
+#include <sstream> 
 
 Application::Application()
 {
@@ -14,7 +16,7 @@ Application::Application()
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
 	// They will CleanUp() in reverse order
-
+	
 	// Main Modules
 	AddModule(window);
 	AddModule(camera);
@@ -117,6 +119,7 @@ update_status Application::Update()
 bool Application::CleanUp()
 {
 	bool ret = true;
+	SaveGame("Control_variables.xml");
 	p2List_item<Module*>* item = list_modules.getLast();
 
 	while(item != NULL && ret == true)
@@ -130,4 +133,42 @@ bool Application::CleanUp()
 void Application::AddModule(Module* mod)
 {
 	list_modules.add(mod);
+}
+
+
+void Application::SaveGame(const char* file) const
+{
+	save_game.create(file);
+
+
+	bool ret = true;
+	LOG("Saving Game State to %s...", save_game.GetString());
+
+	// xml object were we will store all data
+	pugi::xml_document data;
+	pugi::xml_node root;
+
+	root = data.append_child("game_state");
+
+	p2List_item<Module*>* item = list_modules.getFirst();
+
+	while (item != NULL && ret == true)
+	{
+		if (item->data->name == "Player" || item->data->name == "Scene")
+			ret = item->data->Save(root.append_child(item->data->name.GetString()));
+		item = item->next;
+		
+	}
+	if (ret == true)
+	{
+		std::stringstream stream;
+		data.save(stream);
+		data.save_file("save_game.xml");
+
+		
+	}
+	else
+		LOG("Save process halted from an error in module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+
+	data.reset();
 }
