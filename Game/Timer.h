@@ -16,7 +16,7 @@ public:
 	void Resume();
 	Uint32 Read();
 	float ReadSec();
-		
+	bool isRunning();
 private:
 	
 	bool	running;

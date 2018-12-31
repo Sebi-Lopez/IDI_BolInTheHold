@@ -41,5 +41,7 @@ public:
 	float acceleration;
 	float brake;
 	float look_up = STANDARD_LOOK_UP;
-	Timer test; 
+	Timer contact_ball;
+	Timer without_ball;
+
 };

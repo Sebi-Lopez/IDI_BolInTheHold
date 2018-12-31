@@ -3,8 +3,16 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include "Timer.h"
 
 #define MAX_SNAKE 2
+#define NUM_ZONES 15
+
+struct Zone {
+	vec2 init = { 0,0 };
+	vec2 end = { 0,0 };
+	Timer timer;
+};
 
 struct PhysBody3D;
 struct PhysMotor3D;
@@ -17,7 +25,6 @@ struct Fan {
 	Cube cube_down;
 	PhysBody3D* body_cube = nullptr;
 	PhysBody3D* body_cube_down = nullptr;
-
 };
 
 class ModuleSceneIntro : public Module
@@ -37,7 +44,9 @@ public:
 	void UpdateFans();
 	PhysBody3D* CreateFinishLane(vec3 size, vec3 position);
 
-	bool CheckZone(uint zone);
+	void CheckZones();
+
+
 
 public:
 	/*
@@ -65,7 +74,7 @@ public:
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
 private:
+	Zone zones[NUM_ZONES];
 	p2List<Cube> Walls;
 	p2List<Fan> fan;
-
 };

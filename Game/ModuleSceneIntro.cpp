@@ -139,6 +139,18 @@ bool ModuleSceneIntro::Start()
 	App->audio->PlayMusic("assets/journey.ogg");
 	time.Start();
 
+
+	zones[0].init = { -100 , -175 };
+	zones[0].end = { 175, 3 };
+
+	zones[1].init = { -100, 3 };
+	zones[1].end = { 175, 200 };
+
+	for (int i = 0; i < NUM_ZONES; ++i)
+	{
+		zones[i].timer.Stop(); 
+	}
+
 	return ret;
 }
 
@@ -155,6 +167,18 @@ update_status ModuleSceneIntro::Update(float dt)
 {
 	PrintWalls();
 	UpdateFans();
+	CheckZones();
+
+
+	for (uint i = 0; i < NUM_ZONES; i++)
+	{
+		if (zones[i].timer.isRunning())
+		{
+			LOG("Zone No. %i: %.2f", i, zones[i].timer.ReadSec());
+		}
+	}
+
+
 
 	return UPDATE_CONTINUE;
 }
@@ -212,14 +236,21 @@ PhysBody3D* ModuleSceneIntro::CreateFinishLane(vec3 size, vec3 pos) {
 	return flane;
 }
 
-bool ModuleSceneIntro::CheckZone(uint zone)
+void ModuleSceneIntro::CheckZones()
 {
-	int x, y, z;
+	int x, y;
 	x = App->player->GetPos().x;
-	y = App->player->GetPos().y;
-	z = App->player->GetPos().z;
+	y = App->player->GetPos().z;
 
-	return true;
+	for (uint i = 0; i < NUM_ZONES; i++)
+	{
+		Zone check = zones[i]; 
+		if (x > check.init.x && y > check.init.y && x < check.end.x && y < check.end.y)
+		{
+			zones[i].timer.Resume();
+		}
+		else zones[i].timer.Stop();
+	}
 }
 
 void ModuleSceneIntro::CreateFan(float x, float y, float z, Color color) {

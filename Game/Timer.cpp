@@ -32,9 +32,9 @@ void Timer::Stop()
 void Timer::Resume()
 {
 	if (running == false)
-	{
-		started_at += SDL_GetTicks() - stopped_at;
+	{		
 		running = true; 
+		started_at += SDL_GetTicks() - stopped_at;
 	}
 }
 
@@ -61,6 +61,11 @@ float Timer::ReadSec()
 	{
 		return (stopped_at - started_at) / 1000.f;
 	}
+}
+
+bool Timer::isRunning()
+{
+	return running;
 }
 
 
