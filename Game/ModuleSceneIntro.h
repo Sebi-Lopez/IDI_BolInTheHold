@@ -36,6 +36,9 @@ public:
 	void CreateFan(float x, float y, float z, Color color = Black);
 	void UpdateFans();
 	PhysBody3D* CreateFinishLane(vec3 size, vec3 position);
+
+	bool CheckZone(uint zone);
+
 public:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];

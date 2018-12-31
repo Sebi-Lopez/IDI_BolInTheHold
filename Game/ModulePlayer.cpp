@@ -47,16 +47,6 @@ bool ModulePlayer::CleanUp()
 
 update_status ModulePlayer::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
-	{
-		test.Stop();
-	}
-	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
-	{
-		test.Resume();
-	}
-
-	LOG("%.2f", test.ReadSec());
 	if (App->scene_intro->touched_the_sky) 
 	{
 		App->scene_intro->touched_the_sky = false;

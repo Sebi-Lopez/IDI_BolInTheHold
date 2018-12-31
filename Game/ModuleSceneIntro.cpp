@@ -212,6 +212,16 @@ PhysBody3D* ModuleSceneIntro::CreateFinishLane(vec3 size, vec3 pos) {
 	return flane;
 }
 
+bool ModuleSceneIntro::CheckZone(uint zone)
+{
+	int x, y, z;
+	x = App->player->GetPos().x;
+	y = App->player->GetPos().y;
+	z = App->player->GetPos().z;
+
+	return true;
+}
+
 void ModuleSceneIntro::CreateFan(float x, float y, float z, Color color) {
 
 	Cube c(1, 1, 1);
