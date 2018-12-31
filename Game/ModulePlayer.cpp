@@ -47,6 +47,16 @@ bool ModulePlayer::CleanUp()
 
 update_status ModulePlayer::Update(float dt)
 {
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	{
+		test.Stop();
+	}
+	if (App->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
+	{
+		test.Resume();
+	}
+
+	LOG("%.2f", test.ReadSec());
 	if (App->scene_intro->touched_the_sky) 
 	{
 		App->scene_intro->touched_the_sky = false;
@@ -154,7 +164,7 @@ void ModulePlayer::CheckTime()
 {
 	Uint32 act_time = App->scene_intro->time.Read();
 	char title[120];
-	sprintf_s(title, "--- PutTheBolInTheHold --- Time: %.1f s || Best_time: %1.f || Time To Beat: 240 seconds", (float)act_time / 1000, (float)App->scene_intro->finished_time);
+	sprintf_s(title, "--- PutTheBolInTheHold --- Time: %.1f s || Best_time: %1.f || Time To Beat: 240 seconds ||", (float)act_time / 1000, (float)App->scene_intro->finished_time);
 	App->window->SetTitle(title);
 
 	if (act_time >= 240000) {

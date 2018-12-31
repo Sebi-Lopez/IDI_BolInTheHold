@@ -87,10 +87,10 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Sources\Modules\Game</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\DevGame\Platform Game\Motor2D\PugiXml\src\pugiconfig.hpp">
+    <ClInclude Include="PugiXml\src\pugiconfig.hpp">
       <Filter>Sources\Tools\PuguiXML</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\DevGame\Platform Game\Motor2D\PugiXml\src\pugixml.hpp">
+    <ClInclude Include="PugiXml\src\pugixml.hpp">
       <Filter>Sources\Tools\PuguiXML</Filter>
     </ClInclude>
   </ItemGroup>
@@ -149,7 +149,7 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Sources\Modules\Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\DevGame\Platform Game\Motor2D\PugiXml\src\pugixml.cpp">
+    <ClCompile Include="PugiXml\src\pugixml.cpp">
       <Filter>Sources\Tools\PuguiXML</Filter>
     </ClCompile>
   </ItemGroup>

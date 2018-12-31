@@ -2,7 +2,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "p2Point.h"
-
+#include "Timer.h"
 struct PhysVehicle3D;
 
 #define MAX_ACCELERATION 1500.0f
@@ -41,4 +41,5 @@ public:
 	float acceleration;
 	float brake;
 	float look_up = STANDARD_LOOK_UP;
+	Timer test; 
 };
