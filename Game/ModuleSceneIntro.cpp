@@ -9,6 +9,7 @@
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	name.create("Scene");
 }
 
 ModuleSceneIntro::~ModuleSceneIntro()
@@ -27,11 +28,6 @@ bool ModuleSceneIntro::Start()
 	AddWall(vec3(5, 5, 5), vec3(20-17.5, -1,460 -35), White, 45.0F, vec3(0, 0, 1));
 	FinishLane = CreateFinishLane(vec3(3, 3, 3), vec3(20-20, 0.7F, 460 -35));
 	//Finished------------------------------------------------------
-
-	//AddWall(vec3(30, 60, 1), vec3(0, 30, 80), Blue);
-	//AddWall(vec3(30, 15, 1), vec3(0, 7.5F, 40), Green);
-
-	//AddWall(vec3(30, 30, 1), vec3(0, 7, 26.7), Red, 60.f, vec3(1, 0, 0)); 
 	
 	// Right Side Fans
 	CreateFan(-94, 13, 50);

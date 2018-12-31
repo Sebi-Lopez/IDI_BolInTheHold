@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PugiXml\src\pugixml.hpp"
+#include "p2SString.h"
 
 class Application;
 struct PhysBody3D;
@@ -12,6 +13,8 @@ private :
 
 public:
 	Application* App;
+
+	p2SString name;
 
 	Module(Application* parent, bool start_enabled = true) : App(parent)
 	{}
@@ -47,6 +50,11 @@ public:
 	virtual bool CleanUp() 
 	{ 
 		return true; 
+	}
+
+	virtual bool Save(pugi::xml_node&) const
+	{
+		return true;
 	}
 
 	virtual void OnCollision(PhysBody3D* body1, PhysBody3D* body2)
