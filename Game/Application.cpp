@@ -163,7 +163,7 @@ void Application::SaveGame(const char* file) const
 	{
 		std::stringstream stream;
 		data.save(stream);
-		data.save_file("save_game.xml");
+		data.save_file("Control_Variables.xml");
 
 		
 	}
